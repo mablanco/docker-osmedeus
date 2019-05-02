@@ -10,6 +10,11 @@ This will start an Osmedeus instance listening on port 5000 (the `--net` paramet
 
     $ docker run -d --net host --name osmedeus mablanco/osmedeus
 
+In case you want to persist the result of your analysis, you can create a volume for that purpose:
+
+    $ docker volume create osmedeus_workspaces
+    $ docker run -d --net host --name osmedeus -v osmedeus_workspaces:/home/Osmedeus/workspaces mablanco/osmedeus
+
 Now you can interact with Osmedeus from the CLI using the `--client` parameter. For example:
 
     $ docker exec -it osmedeus ./osmedeus.py --client -t example.com
