@@ -1,4 +1,4 @@
-FROM debian:stretch-20190326-slim
+FROM debian:stretch-20190610-slim
 RUN sed -i 's/main/main contrib non-free/' /etc/apt/sources.list && \
     echo "deb http://ftp.debian.org/debian/ stretch-backports main contrib non-free" > /etc/apt/sources.list.d/backports.list
 WORKDIR /home/Osmedeus
