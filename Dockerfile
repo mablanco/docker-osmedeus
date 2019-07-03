@@ -3,6 +3,7 @@ RUN sed -i 's/main/main contrib non-free/' /etc/apt/sources.list && \
     echo "deb http://ftp.debian.org/debian/ stretch-backports main contrib non-free" > /etc/apt/sources.list.d/backports.list
 WORKDIR /home/Osmedeus
 RUN apt-get update && \
+    apt-get -yu dist-upgrade && \
     apt-get -qq -t stretch-backports install npm golang-go && \
     apt-get -qq install locales git sudo wget python3-pip python-pip libcurl4-openssl-dev bsdmainutils && \
     git clone --depth 1 https://github.com/j3ssie/Osmedeus . && \
