@@ -6,6 +6,7 @@ RUN apt-get update && \
     apt-get -yu dist-upgrade && \
     apt-get -qq -t stretch-backports install npm golang-go && \
     apt-get -qq install locales git sudo wget python3-pip python-pip libcurl4-openssl-dev bsdmainutils xsltproc && \
+    cp -av /usr/bin/pip2 /usr/bin/pip2.7 && \
     git clone --depth 1 https://github.com/j3ssie/Osmedeus . && \
     ./install.sh && \
     apt-get clean && \
