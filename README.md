@@ -2,7 +2,7 @@
 
 Docker image for Osmedeus, a fully automated offensive security tool for reconnaissance and vulnerability scanning (<https://github.com/j3ssie/Osmedeus>).
 
-This image is built upon Debian based Golang image and launches Osmedeus' Web UI and API server through Python (i.e. development mode) on port 5000.
+This image is built upon Debian Stretch slim image and launches Osmedeus' Web UI and API server through Python (i.e. development mode) on port 5000.
 
 ## How to use this image
 
