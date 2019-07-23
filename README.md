@@ -9,6 +9,10 @@ This image is built upon Debian Stretch slim image and launches Osmedeus' Web UI
 This will start an Osmedeus instance listening on port 5000 (the `--net` parameter is needed to able to authenticate against the Web UI):
 
     $ docker run -d --net host --name osmedeus mablanco/osmedeus
+    
+### For MacOs
+
+    $ docker run -d -p 5000:5000 --name osmedeus mablanco/osmedeus
 
 In case you want to persist the result of your analysis, you can create a volume for that purpose:
 
