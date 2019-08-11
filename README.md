@@ -19,4 +19,8 @@ Now you can interact with Osmedeus from the CLI using the `--client` parameter. 
 
     $ docker exec -it osmedeus ./osmedeus.py --client -t example.com
 
-Once you launch the first analysis, a password for the Web UI will be automatically generated, stored in the `core/config.conf` file inside the container. You can now access the Web UI with a web browser at port 5000 using HTTPS. Remember that the certificate is self generated, so you will have to instruct your web browser to accept it.
+Once you launch the first analysis, a password for the Web UI will be automatically generated, stored in the `core/config.conf` file inside the container. You can get it this way:
+
+    $ docker exec -it osmedeus cat core/config.conf | grep password
+
+You can now access the Web UI with a web browser at port 5000 using HTTPS. Remember that the certificate is self generated, so you will have to instruct your web browser to accept it.
