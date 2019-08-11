@@ -6,21 +6,17 @@ This image is built upon Debian Stretch slim image and launches Osmedeus' Web UI
 
 ## How to use this image
 
-This will start an Osmedeus instance listening on port 5000 (the `--net` parameter is needed to able to authenticate against the Web UI):
-
-    $ docker run -d --net host --name osmedeus mablanco/osmedeus
-
-### For MacOs
+This will start an Osmedeus instance listening on port 5000:
 
     $ docker run -d -p 5000:5000 --name osmedeus mablanco/osmedeus
 
 In case you want to persist the result of your analysis, you can create a volume for that purpose:
 
     $ docker volume create osmedeus_workspaces
-    $ docker run -d --net host --name osmedeus -v osmedeus_workspaces:/home/Osmedeus/workspaces mablanco/osmedeus
+    $ docker run -d -p 5000:5000 --name osmedeus -v osmedeus_workspaces:/home/Osmedeus/workspaces mablanco/osmedeus
 
 Now you can interact with Osmedeus from the CLI using the `--client` parameter. For example:
 
     $ docker exec -it osmedeus ./osmedeus.py --client -t example.com
 
-Once you launch the first analysis, a password for the Web UI will be automatically generated, stored in the `core/config.conf` file inside the container. You can now access the Web UI with a web browser at port 5000 using HTTPS. Remember that the certificate is self generated, so you will have to instruct your web browser to accept it. 
+Once you launch the first analysis, a password for the Web UI will be automatically generated, stored in the `core/config.conf` file inside the container. You can now access the Web UI with a web browser at port 5000 using HTTPS. Remember that the certificate is self generated, so you will have to instruct your web browser to accept it.
