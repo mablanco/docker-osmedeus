@@ -13,7 +13,7 @@ This will start an Osmedeus instance listening on port 5000:
 In case you want to persist the result of your analysis, you can create a volume for that purpose:
 
     $ docker volume create osmedeus_workspaces
-    $ docker run -d -p 5000:5000 --name osmedeus -v osmedeus_workspaces:/home/Osmedeus/workspaces mablanco/osmedeus
+    $ docker run -d -p 5000:5000 --name osmedeus -v osmedeus_workspaces:/root/.osmedeus/workspaces mablanco/osmedeus
 
 Now you can interact with Osmedeus from the CLI using the `--client` parameter. For example:
 
@@ -21,6 +21,10 @@ Now you can interact with Osmedeus from the CLI using the `--client` parameter. 
 
 Once you launch the first analysis, a password for the Web UI will be automatically generated, stored in the `core/config.conf` file inside the container. You can get it this way:
 
-    $ docker exec -it osmedeus cat core/config.conf | grep password
+    $ docker exec -it osmedeus cat /root/.osmedeus/config.conf | grep password
 
 You can now access the Web UI with a web browser at port 5000 using HTTPS. Remember that the certificate is self generated, so you will have to instruct your web browser to accept it.
+
+## Note
+
+Osmedeus v1.5 has changed the location of the working directory and now lives at `.osmedeus` under the home directory of the running user.
