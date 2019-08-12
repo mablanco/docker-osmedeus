@@ -13,9 +13,6 @@ RUN apt-get update && \
     cp -av /usr/bin/pip2 /usr/bin/pip2.7 && \
     git clone --depth 1 https://github.com/j3ssie/Osmedeus . && \
     ./install.sh && \
-    cd plugins/LinkFinder && \
-    python2.7 ./setup.py install && \
-    cd - && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 EXPOSE 5000
