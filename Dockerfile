@@ -14,6 +14,7 @@ RUN apt-get update && \
     cp -av /usr/bin/pip2 /usr/bin/pip2.7 && \
     git clone --depth 1 https://github.com/j3ssie/Osmedeus -b $OSMEDEUS_VERSION . && \
     ./install.sh && \
+    go get -u github.com/tomnomnom/unfurl && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 EXPOSE 8000
