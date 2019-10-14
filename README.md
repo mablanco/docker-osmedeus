@@ -41,16 +41,16 @@ The image launches Osmedeus' CLI tool without any arguments, so you have to prov
 
 This will show Osmedeus inline help:
 
-    $ docker run -it --rm mablanco/osmedeus:v2.0-beta
+    $ docker run -it --rm mablanco/osmedeus:2.0-beta
 
 This will start an analysis on domain `example.com` with logs on the console:
 
-    $ docker run -it --rm --name osmedeus --net host mablanco/osmedeus:v2.0-beta ./osmedeus.py -t example.com
+    $ docker run -it --rm --name osmedeus --net host mablanco/osmedeus:2.0-beta ./osmedeus.py -t example.com
 
 In case you want to persist the results of your analysis, you can create a volume for that purpose:
 
     $ docker volume create osmedeus_workspaces
-    $ docker run -it --rm --name osmedeus -v osmedeus_workspaces:/root/.osmedeus/workspaces --net host mablanco/osmedeus:v2.0-beta ./osmedeus.py -t example.com
+    $ docker run -it --rm --name osmedeus -v osmedeus_workspaces:/root/.osmedeus/workspaces --net host mablanco/osmedeus:2.0-beta ./osmedeus.py -t example.com
 
 ### Note
 
