@@ -1,5 +1,5 @@
-FROM debian:buster-20190910-slim
-ARG OSMEDEUS_VERSION=v1.5
+FROM debian:buster-20191014-slim
+ARG OSMEDEUS_VERSION=v.2.1
 RUN sed -i 's/main/main contrib non-free/' /etc/apt/sources.list
 WORKDIR /home/Osmedeus
 ENV LANG="en_US.UTF-8" \
@@ -14,7 +14,8 @@ RUN apt-get update && \
     cp -av /usr/bin/pip2 /usr/bin/pip2.7 && \
     git clone --depth 1 https://github.com/j3ssie/Osmedeus -b $OSMEDEUS_VERSION . && \
     ./install.sh && \
+    go get -u github.com/tomnomnom/unfurl && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-EXPOSE 5000
-ENTRYPOINT ["python3", "core/app.py", "-b", "0.0.0.0", "-p", "5000"]
+EXPOSE 8000
+CMD ["./osmedeus.py"]
