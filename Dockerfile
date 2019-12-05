@@ -15,7 +15,8 @@ RUN apt-get update && \
     git clone --depth 1 https://github.com/j3ssie/Osmedeus -b $OSMEDEUS_VERSION . && \
     ./install.sh && \
     go get -u github.com/tomnomnom/unfurl && \
+    apt-get -y autoremove && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/{apt,dpkg,cache,log}
 EXPOSE 8000
 CMD ["./osmedeus.py"]
