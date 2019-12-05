@@ -1,5 +1,5 @@
-FROM debian:buster-20191014-slim
-ARG OSMEDEUS_VERSION=v.2.1
+FROM debian:buster-20191118-slim
+ARG OSMEDEUS_VERSION=v2.2
 RUN sed -i 's/main/main contrib non-free/' /etc/apt/sources.list
 WORKDIR /home/Osmedeus
 ENV LANG="en_US.UTF-8" \
