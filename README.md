@@ -57,3 +57,15 @@ In case you want to persist the results of your analysis, you can create a volum
 ### Note
 
 The Web UI is accesible at `http://127.0.0.1:8000/`, thanks to the `--net host` parameter. Omit it if you don't want the UI to be accessible.
+
+## Building the image
+
+Use the following command to build the image with the `latest` tag:
+
+    $ docker build -t mablanco/osmedeus .
+
+It will fetch the release version specified in the OSMEDEUS_VERSION variable inside the Dockerfile from the source code repository. In case you want to build a different version, first browse the available releases from https://github.com/j3ssie/Osmedeus/releases and then use this command:
+
+   $ docker build --build-arg OSMEDEUS_VERSION=<release> -t mablanco/osmedeus:<release> .
+
+If you want to build the bleeding edge code, use `master` as value for the OSMEDEUS_VERSION variable in the previous command.
