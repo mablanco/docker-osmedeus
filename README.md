@@ -47,16 +47,16 @@ This will show Osmedeus inline help:
 
 This will start an analysis on domain `example.com` with logs on the console:
 
-    $ docker run -it --rm --name osmedeus --net host mablanco/osmedeus ./osmedeus.py -t example.com
+    $ docker run -it --rm --name osmedeus -p 8000:8000 mablanco/osmedeus ./osmedeus.py -t example.com
 
 In case you want to persist the results of your analysis, you can create a volume for that purpose:
 
     $ docker volume create osmedeus_workspaces
-    $ docker run -it --rm --name osmedeus -v osmedeus_workspaces:/root/.osmedeus/workspaces --net host mablanco/osmedeus ./osmedeus.py -t example.com
+    $ docker run -it --rm --name osmedeus -v osmedeus_workspaces:/root/.osmedeus/workspaces -p 8000:8000 mablanco/osmedeus ./osmedeus.py -t example.com
 
 ### Note
 
-The Web UI is accesible at `http://127.0.0.1:8000/`, thanks to the `--net host` parameter. Omit it if you don't want the UI to be accessible.
+The Web UI is accesible at `http://127.0.0.1:8000/`, thanks to the `-p 8000:8000` parameter. Omit it if you don't want the UI to be accessible.
 
 ## Building the image
 
