@@ -54,9 +54,13 @@ In case you want to persist the results of your analysis, you can create a volum
     $ docker volume create osmedeus_workspaces
     $ docker run -it --rm --name osmedeus -v osmedeus_workspaces:/root/.osmedeus/workspaces -p 8000:8000 mablanco/osmedeus ./osmedeus.py -t example.com
 
-### Note
+### Web UI
 
 The Web UI is accesible at `http://127.0.0.1:8000/`, thanks to the `-p 8000:8000` parameter. Omit it if you don't want the UI to be accessible.
+
+The password to access the Web UI can be obtained executing this command:
+
+    docker exec -it osmedeus grep password /root/.osmedeus/client.conf
 
 ## Building the image
 
