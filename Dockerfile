@@ -1,4 +1,4 @@
-FROM debian:buster-20191118-slim
+FROM debian:buster-20200130-slim
 ARG OSMEDEUS_VERSION=v2.2
 RUN sed -i 's/main/main contrib non-free/' /etc/apt/sources.list
 WORKDIR /home/Osmedeus
