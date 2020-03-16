@@ -68,7 +68,7 @@ Use the following command to build the image with the `latest` tag:
 
     $ docker build -t mablanco/osmedeus .
 
-It will fetch the release version specified in the OSMEDEUS_VERSION variable inside the Dockerfile from the source code repository. In case you want to build a different version, first browse the available releases from https://github.com/j3ssie/Osmedeus/releases and then use this command:
+It will fetch the release version specified in the OSMEDEUS_VERSION variable inside the Dockerfile from the source code repository. In case you want to build a different version, first browse the available releases from <https://github.com/j3ssie/Osmedeus/releases> and then use this command:
 
     $ docker build --build-arg OSMEDEUS_VERSION=<release> -t mablanco/osmedeus:<release> .
 
