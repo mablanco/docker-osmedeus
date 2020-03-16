@@ -12,6 +12,7 @@ RUN apt-get update && \
     sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     locale-gen && \
     git clone --depth 1 https://github.com/j3ssie/Osmedeus -b $OSMEDEUS_VERSION . && \
+    sed -i 's/pip install truffleHog/pip3 install truffleHog/' install.sh && \
     ./install.sh && \
     go get -u github.com/tomnomnom/unfurl && \
     apt-get -y autoremove && \
