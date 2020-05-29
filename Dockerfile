@@ -13,7 +13,7 @@ RUN apt-get update && \
     locale-gen && \
     git clone --depth 1 https://github.com/j3ssie/Osmedeus -b $OSMEDEUS_VERSION . && \
     ./install.sh && \
-    go get -u github.com/tomnomnom/unfurl && \
+    /root/.go/bin/go get -u github.com/tomnomnom/unfurl && \
     apt-get -y autoremove && \
     apt-get clean && \
     rm -rf /var/lib/{apt,dpkg,cache,log}
