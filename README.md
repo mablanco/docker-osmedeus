@@ -39,20 +39,30 @@ The image launches Osmedeus' CLI tool without any arguments, so you have to prov
 
 From v2.1 on, the Docker image `latest` tag references the newest 2.x avaliable version.
 
+
 ### How to use this image
 
 This will show Osmedeus inline help:
 
-    $ docker run -it --rm mablanco/osmedeus
+$ docker run -it --rm mablanco/osmedeus
 
 This will start an analysis on domain `example.com` with logs on the console:
 
-    $ docker run -it --rm --name osmedeus -p 8000:8000 mablanco/osmedeus ./osmedeus.py -t example.com
-
+$ docker run -it --rm --name osmedeus -p 8000:8000 mablanco/osmedeus ./osmedeus.py -t example.com
 In case you want to persist the results of your analysis, you can create a volume for that purpose:
 
     $ docker volume create osmedeus_workspaces
     $ docker run -it --rm --name osmedeus -v osmedeus_workspaces:/root/.osmedeus/workspaces -p 8000:8000 mablanco/osmedeus ./osmedeus.py -t example.com
+
+### Server-client architecture (as v1.5)
+
+In case you'd like to work like in v1.5, i.e. launching separate server and client instances, you can do so modifying the runnig parameters.
+
+This will start a server instance listening on port 8000 and using an existing data volume:
+
+    $ docker run -itd --rm --name osmedeus-server -v osmedeus_workspaces:/root/.osmedeus/workspaces -p 8000:8000 mablanco/osmedeus python3 server/manage.py runserver 0.0.0.0:8000
+
+This architecture is useful for e.g. running an Osmedeus central server or for accessing the results of previous scans without launching a new one.
 
 ### Web UI
 
