@@ -6,10 +6,9 @@ In early September 2019, Osmedeus' main developer (j3ssie) launched a beta of th
 
 ## v2.x
 
-The image launches Osmedeus' CLI tool without any arguments, so you have to provide your own to modify Osmedeus execution. Have a look at the inline help and the official documentation for basic and advance usage examples.
+The image launches Osmedeus' CLI tool without any arguments, so you have to provide your own to modify Osmedeus execution. Have a look at the inline help and the official documentation for basic and advanced usage examples.
 
-From v2.1 on, the Docker image `latest` tag references the newest 2.x avaliable version.
-
+From v2.1 on, the Docker image `latest` tag references the newest 2.x available version.
 
 ### How to use this image
 
@@ -31,7 +30,13 @@ In case you'd like to work like in v1.5, i.e. launching separate server and clie
 
 This will start a server instance listening on port 8000 and using an existing data volume:
 
-    $ docker run -itd --rm --name osmedeus-server -v osmedeus_workspaces:/root/.osmedeus/workspaces -p 8000:8000 mablanco/osmedeus python3 server/manage.py runserver 0.0.0.0:8000
+    $ docker run -d --rm --name osmedeus-server -v osmedeus_workspaces:/root/.osmedeus/workspaces -p 8000:8000 mablanco/osmedeus python3 server/manage.py runserver 0.0.0.0:8000
+
+Use `-it` instead of `-d` if you want logs to debug the server. The API is now ready at 8000. You can also launch new scans against the server instance like this:
+
+    $ docker run -it --rm --name osmedeus-scan mablanco/osmedeus ./osmedeus.py --remote http://<server_ip>:8000 --client -t example.com
+
+Remember not to use `localhost` as the server IP when running both containers in the same machine as the client one will then try to access the server instance inside itself. In order to improve this connection, you could use advanced Docker networking capabilities, like a private network, the legacy `--link` parameter or the more modern `--alias` parameter.
 
 This architecture is useful for e.g. running an Osmedeus central server or for accessing the results of previous scans without launching a new one.
 
