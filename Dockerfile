@@ -1,4 +1,5 @@
 FROM debian:buster-20200720-slim
+ENV DEBIAN_FRONTEND noninteractive
 ARG OSMEDEUS_VERSION=v2.2
 RUN sed -i 's/main/main contrib non-free/' /etc/apt/sources.list
 WORKDIR /home/Osmedeus
