@@ -6,11 +6,12 @@ ENV LANG="en_US.UTF-8" \
     LANGUAGE="en_US:en" \
     LC_ALL="en_US.UTF-8"
 RUN apt-get update && \
-    apt-get -yqu dist-upgrade && \
-    apt-get -yq install npm && \
-    apt-get -yq install locales git sudo wget python3-pip python-pip curl libcurl4-openssl-dev bsdmainutils xsltproc && \
+    apt-get -yq install apt-utils locales && \
     sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     locale-gen && \
+    apt-get -yqu dist-upgrade && \
+    apt-get -yq install npm && \
+    apt-get -yq install git sudo wget python3-pip python-pip curl libcurl4-openssl-dev bsdmainutils xsltproc && \
     git clone --depth 1 https://github.com/j3ssie/Osmedeus -b $OSMEDEUS_VERSION . && \
     ./install.sh && \
     /root/.go/bin/go get -u github.com/tomnomnom/unfurl && \
