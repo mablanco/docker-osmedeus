@@ -24,7 +24,6 @@ RUN apt-get update && \
       xsltproc && \
     git clone --depth 1 https://github.com/j3ssie/Osmedeus -b $OSMEDEUS_VERSION . && \
     ./install.sh && \
-    sed -i -e 's/ -include-unresolvable//' ./lib/workflow/general.py && \
     /root/.go/bin/go get -u github.com/tomnomnom/unfurl && \
     apt-get -y autoremove && \
     apt-get clean && \
