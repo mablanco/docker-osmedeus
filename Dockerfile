@@ -29,4 +29,4 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/{apt,dpkg,cache,log}
 EXPOSE 8000
-CMD ["./osmedeus.py"]
+CMD ["python3 osmedeus.py"]
