@@ -25,6 +25,8 @@ RUN apt-get update && \
     git clone --depth 1 https://github.com/j3ssie/Osmedeus -b $OSMEDEUS_VERSION . && \
     ./install.sh && \
     /root/.go/bin/go get -u github.com/tomnomnom/unfurl && \
+    pip3 uninstall -y PyJWT && \
+    apt-get -y install python3-jwt && \
     apt-get -y autoremove && \
     apt-get clean && \
     rm -rf /var/lib/{apt,dpkg,cache,log}
