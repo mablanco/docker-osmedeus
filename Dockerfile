@@ -23,10 +23,9 @@ RUN apt-get update && \
       bsdmainutils \
       xsltproc && \
     git clone --depth 1 https://github.com/j3ssie/Osmedeus -b $OSMEDEUS_VERSION . && \
+    echo "PyJWT==1.7.1" >> requirements.txt && \
     ./install.sh && \
     /root/.go/bin/go get -u github.com/tomnomnom/unfurl && \
-    pip3 uninstall -y PyJWT && \
-    apt-get -y install python3-jwt && \
     apt-get -y autoremove && \
     apt-get clean && \
     rm -rf /var/lib/{apt,dpkg,cache,log}
