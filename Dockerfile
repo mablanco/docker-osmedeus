@@ -1,4 +1,4 @@
-FROM debian:buster-20210111-slim
+FROM debian:buster-20210408-slim
 ENV DEBIAN_FRONTEND noninteractive
 ARG OSMEDEUS_VERSION=v2.2
 RUN sed -i 's/main/main contrib non-free/' /etc/apt/sources.list
