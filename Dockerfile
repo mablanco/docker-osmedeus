@@ -12,6 +12,8 @@ RUN apt-get update && \
     locale-gen && \
     apt-get -yqu dist-upgrade && \
     apt-get -yq install \
+      libicu-dev \
+      pkg-config \
       npm \
       git \
       sudo \
