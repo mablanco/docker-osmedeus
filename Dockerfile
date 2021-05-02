@@ -1,12 +1,12 @@
 FROM debian:buster-20210408-slim
 ENV DEBIAN_FRONTEND noninteractive
 ARG OSMEDEUS_VERSION=v2.2
-RUN sed -i 's/main/main contrib non-free/' /etc/apt/sources.list
 WORKDIR /home/Osmedeus
 ENV LANG="en_US.UTF-8" \
     LANGUAGE="en_US:en" \
     LC_ALL="en_US.UTF-8"
-RUN apt-get update && \
+RUN sed -i 's/main/main contrib non-free/' /etc/apt/sources.list && \
+    apt-get update && \
     apt-get -yq install apt-utils locales && \
     sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     locale-gen && \
