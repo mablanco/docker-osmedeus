@@ -1,4 +1,4 @@
-FROM debian:buster-20210408-slim
+FROM debian:buster-20210511-slim
 ENV DEBIAN_FRONTEND noninteractive
 ARG OSMEDEUS_VERSION=v2.2
 WORKDIR /home/Osmedeus
@@ -27,7 +27,7 @@ RUN sed -i 's/main/main contrib non-free/' /etc/apt/sources.list && \
     git clone --depth 1 https://github.com/j3ssie/Osmedeus -b $OSMEDEUS_VERSION . && \
     echo "PyJWT==1.7.1" >> requirements.txt && \
     ./install.sh && \
-    /root/.go/bin/go get -u github.com/tomnomnom/unfurl && \
+    go get -u github.com/tomnomnom/unfurl && \
     apt-get -y autoremove && \
     apt-get clean && \
     rm -rf /var/lib/{apt,dpkg,cache,log}
