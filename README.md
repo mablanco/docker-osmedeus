@@ -4,7 +4,7 @@
 
 Docker image for Osmedeus, a fully automated offensive security tool for reconnaissance and vulnerability scanning (<https://github.com/j3ssie/Osmedeus>). This image is built upon Debian's Bullseye slim image.
 
-On 1st January 2022, Osmedeus' main developer (j3ssie) launched a beta of the new 4.0 version, which superseeds the previous v2 based on Django. While README file covers v4, the READEMv2 file covers both the 1.5 and the 2.x versions.
+On 1st January 2022, Osmedeus' main developer (j3ssie) launched a beta of the new 4.0 version, which superseeds the previous v2 based on Django. While this README covers v4, the [READMEv2](READMEv2.md) file covers both the 1.5 and the 2.x versions.
 
 From v4.0.0 on, the Docker image `latest` tag references the newest 4.x available version.
 
@@ -35,7 +35,7 @@ Now the Web UI is accesible at `https://127.0.0.1:8000/`. You can access an alre
 
 The password to access the Web UI can be obtained executing this command:
 
-    $ docker exec -it osmedeus grep password  /root/.osmedeus/config.yaml
+    $ docker exec -it osmedeus-server grep password /root/.osmedeus/config.yaml | head -1
 
 ## Building the image
 
