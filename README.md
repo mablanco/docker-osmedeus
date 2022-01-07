@@ -1,12 +1,14 @@
 # docker-osmedeus v4
 
+## Description
+
 Docker image for Osmedeus, a fully automated offensive security tool for reconnaissance and vulnerability scanning (<https://github.com/j3ssie/Osmedeus>). This image is built upon Debian's Bullseye slim image.
 
 On 1st January 2022, Osmedeus' main developer (j3ssie) launched a beta of the new 4.0 version, which superseeds the previous v2 based on Django. While README file covers v4, the READEMv2 file covers both the 1.5 and the 2.x versions.
 
 From v4.0.0 on, the Docker image `latest` tag references the newest 4.x available version.
 
-### How to use this image
+## How to use this image
 
 The image launches Osmedeus' CLI tool without any arguments, so you have to provide your own to modify Osmedeus execution. Have a look at the inline help and the official documentation for basic and advanced usage examples.
 
@@ -23,7 +25,7 @@ In case you want to persist the results of your analysis, you can create a volum
     $ docker volume create osmedeus_workspaces
     $ docker run -it --rm -v osmedeus_workspaces:/root/.osmedeus/workspaces mablanco/osmedeus osmedeus scan -t example.com
 
-### Web UI
+## Web UI
 
 You can start the Web UI, as a daemonized process, with the following command:
 
