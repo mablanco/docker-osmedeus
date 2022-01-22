@@ -12,7 +12,11 @@ RUN apt-get update && \
     bash -c "$(curl -fsSL https://raw.githubusercontent.com/osmedeus/osmedeus-base/master/install.sh)" && \
     apt-get -y autoremove && \
     apt-get clean && \
-    rm -rf /var/lib/{apt,dpkg,cache,log}
+    rm -rf /var/lib/{apt,dpkg,cache,log} && \
+    curl -LO https://releases.hashicorp.com/packer/1.7.9/packer_1.7.9_linux_amd64.zip && \
+    unzip packer_1.7.9_linux_amd64.zip && \
+    mv -v packer /root/osmedeus-base/binaries/ && \
+    rm packer_1.7.9_linux_amd64.zip
 WORKDIR /root
 EXPOSE 8000
 CMD ["osmedeus"]
