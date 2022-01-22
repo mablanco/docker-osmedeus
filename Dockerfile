@@ -1,7 +1,6 @@
 FROM debian:bullseye-20211220-slim
 ENV DEBIAN_FRONTEND noninteractive
 RUN sed -i 's/main/main contrib non-free/' /etc/apt/sources.list
-#WORKDIR /home/Osmedeus
 ENV LANG="en_US.UTF-8" \
     LANGUAGE="en_US:en" \
     LC_ALL="en_US.UTF-8"
@@ -14,5 +13,6 @@ RUN apt-get update && \
     apt-get -y autoremove && \
     apt-get clean && \
     rm -rf /var/lib/{apt,dpkg,cache,log}
+WORKDIR /root
 EXPOSE 8000
 CMD ["osmedeus"]
