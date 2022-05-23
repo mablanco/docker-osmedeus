@@ -1,0 +1,75 @@
+name: 'Docker build and push'
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+env:
+  REGISTRY: docker.io
+  IMAGE_NAME: mablanco/osmedeus
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Log into registry ${{ env.REGISTRY }}
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: false
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Push Docker image
+        if: github.ref == 'refs/heads/master'
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          
+ 
+      - name: Install Grype
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin
+          echo -n "Installed "
+          /usr/local/bin/grype version | grep -i "^version"
+          echo "Updating vulnerability database..."
+          /usr/local/bin/grype db update -v
+  
+      - name: Scan image for vulnerabilities
+        run: /usr/local/bin/grype ${{ steps.meta.outputs.tags }} | tee /tmp/vuln-scan.txt
+
+      - name: Publish image scan results
+        uses: actions/upload-artifact@v2
+        with:
+          name: vuln-scan.txt
+          path: /tmp/vuln-scan.txt
+
+          retention-days: 15
