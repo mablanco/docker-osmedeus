@@ -29,7 +29,7 @@ In case you want to persist the results of your analysis, you can create a volum
 
 You can start the Web UI, as a daemonized process, with the following command:
 
-    $ docker run -d --name osmedeus-server -p 8000:8000 mablanco/osmedeus osemdeus server
+    $ docker run -d --name osmedeus-server -p 8000:8000 mablanco/osmedeus osmedeus server
 
 Now the Web UI is accesible at `https://127.0.0.1:8000/`. You can access an already existing volume containing Osmedeus workspaces adding the above volume parameters.
 
