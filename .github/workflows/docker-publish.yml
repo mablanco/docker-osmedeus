@@ -3,9 +3,10 @@ name: 'Docker build and push'
 on:
   workflow_dispatch:
   push:
-    branches: [ master ]
+    tags: [ 4* ]
   pull_request:
     branches: [ master ]
+    tags: [ 4* ]
 
 env:
   REGISTRY: docker.io
@@ -69,5 +70,4 @@ jobs:
         with:
           name: vuln-scan.txt
           path: /tmp/vuln-scan.txt
-
           retention-days: 15
