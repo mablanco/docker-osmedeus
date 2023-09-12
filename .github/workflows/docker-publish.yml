@@ -61,7 +61,9 @@ jobs:
           only-fixed: true
 
       - name: Inspect SARIF report
-        run: cat ${{ steps.scan.outputs.sarif }}
+        run: |
+            ls -l ${{ steps.scan.outputs.sarif }}
+            cat ${{ steps.scan.outputs.sarif }}
 
       - name: Upload scan SARIF report
         uses: github/codeql-action/upload-sarif@v2
