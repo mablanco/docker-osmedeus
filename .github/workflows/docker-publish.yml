@@ -5,7 +5,7 @@ on:
   push:
     tags: [ 4* ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     tags: [ 4* ]
 
 env:
