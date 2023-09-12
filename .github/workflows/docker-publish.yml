@@ -18,6 +18,7 @@ jobs:
     permissions:
       contents: read
       packages: write
+      security-events: write
 
     steps:
       - name: Checkout repository
@@ -52,20 +53,18 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Install Grype
-        run: |
-          curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin
-          echo -n "Installed "
-          /usr/local/bin/grype version | grep -i "^version"
-          echo "Updating vulnerability database..."
-          /usr/local/bin/grype db update -v
-  
       - name: Scan image for vulnerabilities
-        run: /usr/local/bin/grype ${{ steps.meta.outputs.tags }} | tee /tmp/vuln-scan.txt
-
-      - name: Publish image scan results
-        uses: actions/upload-artifact@v3.1.3
+        uses: anchore/scan-action@v3.3.6
+        id: scan
         with:
-          name: vuln-scan.txt
-          path: /tmp/vuln-scan.txt
-          retention-days: 15
+          image: ${{ steps.meta.outputs.tags }}
+          fail-build: false
+          only-fixed: true
+
+      - name: Inspect SARIF report
+        run: cat ${{ steps.scan.outputs.sarif }}
+
+      - name: Upload scan SARIF report
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ${{ steps.scan.outputs.sarif }}
