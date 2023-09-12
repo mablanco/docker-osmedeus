@@ -55,15 +55,14 @@ jobs:
 
       - name: Scan image for vulnerabilities
         uses: anchore/scan-action@v3.3.6
+        id: scan
         with:
           image: ${{ steps.meta.outputs.tags }}
           fail-build: false
           only-fixed: true
 
       - name: Inspect SARIF report
-        run: |
-            ls -l ${{ steps.scan.outputs.sarif }}
-            cat ${{ steps.scan.outputs.sarif }}
+        run: cat ${{ steps.scan.outputs.sarif }}
 
       - name: Upload scan SARIF report
         uses: github/codeql-action/upload-sarif@v2
