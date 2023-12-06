@@ -1,4 +1,4 @@
-FROM debian:bullseye-20230904-slim
+FROM debian:bullseye-20231120-slim
 ENV DEBIAN_FRONTEND noninteractive
 RUN sed -i 's/main/main contrib non-free/' /etc/apt/sources.list
 ENV LANG="en_US.UTF-8" \
