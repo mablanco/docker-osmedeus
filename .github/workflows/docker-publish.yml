@@ -1,4 +1,4 @@
-name: 'Docker build and push'
+name: 'Osmedeus Docker image build and push to Docker Hub'
 
 on:
   workflow_dispatch:
@@ -13,7 +13,7 @@ env:
   IMAGE_NAME: mablanco/osmedeus
 
 jobs:
-  build:
+  build-and-push:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -37,16 +37,8 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
-      - name: Build Docker image
-        uses: docker/build-push-action@v5.1.0
-        with:
-          context: .
-          push: false
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-
-      - name: Push Docker image
-        uses: docker/build-push-action@v5.1.0
+      - name: Build and Push Docker image
+        uses: docker/build-push-action@v6.9.0
         with:
           context: .
           push: true
