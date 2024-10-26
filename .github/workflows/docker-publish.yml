@@ -6,7 +6,6 @@ on:
     tags: [ 4* ]
   pull_request:
     branches: [ main ]
-    tags: [ 4* ]
 
 env:
   REGISTRY: docker.io
@@ -33,7 +32,7 @@ jobs:
 
       - name: Extract Docker metadata
         id: meta
-        uses: docker/metadata-action@v5.3.0
+        uses: docker/metadata-action@v5.5.1
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
