@@ -1,10 +1,10 @@
 FROM debian:bullseye-20241016-slim
 ARG DEBIAN_FRONTEND=noninteractive
-RUN sed -i 's/main/main contrib non-free/' /etc/apt/sources.list
 ENV LANG="en_US.UTF-8" \
     LANGUAGE="en_US:en" \
     LC_ALL="en_US.UTF-8"
-RUN apt-get update && \
+RUN sed -i 's/main/main contrib non-free/' /etc/apt/sources.list && \
+    apt-get update && \
     apt-get -yq install apt-utils locales curl && \
     sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     locale-gen && \
