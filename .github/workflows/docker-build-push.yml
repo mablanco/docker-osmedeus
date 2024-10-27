@@ -1,0 +1,20 @@
+name: 'Osmedeus Docker image build and push to Docker Hub'
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - '*'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    uses: mablanco/shared-github-workflows/.github/workflows/docker-build-push.yml@main
+    with:
+      container-registry: docker.io
+      image-name: mablanco/osmedeus
+    secrets:
+      registry-username: ${{ secrets.DOCKERHUB_USERNAME }}
+      registry-access-token: ${{ secrets.DOCKERHUB_TOKEN }}
