@@ -1,4 +1,4 @@
-FROM debian:bullseye-20241016-slim
+FROM debian:bullseye-20250811-slim
 ARG DEBIAN_FRONTEND=noninteractive
 ENV LANG="en_US.UTF-8" \
     LANGUAGE="en_US:en" \
