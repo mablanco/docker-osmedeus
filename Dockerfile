@@ -11,6 +11,7 @@ RUN sed -i 's/main/main contrib non-free/' /etc/apt/sources.list && \
     locale-gen && \
     apt-get -yqu dist-upgrade && \
     bash -c "$(curl -sSL http://www.osmedeus.org/install.sh)" && \
+    osmedeus install base --preset && \
     osmedeus health && \
     apt-get -y autoremove && \
     apt-get clean && \
