@@ -6,7 +6,7 @@ ENV LANG="en_US.UTF-8" \
     LC_ALL="en_US.UTF-8"
 RUN sed -i 's/main/main contrib non-free/' /etc/apt/sources.list.d/debian.sources && \
     apt-get update && \
-    apt-get -yq install apt-utils locales curl git rsync && \
+    apt-get -yq install apt-utils locales curl git rsync assetfinder && \
     sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     locale-gen && \
     apt-get -yqu dist-upgrade && \
