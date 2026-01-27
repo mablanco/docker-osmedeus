@@ -8,10 +8,16 @@ Docker image for Osmedeus, a fully automated offensive security tool for reconna
 
 The image launches Osmedeus' CLI tool without any arguments, so you have to provide your own to customise Osmedeus execution. Have a look at the inline help and the official documentation for basic and advanced usage examples.
 
-This will show Osmedeus inline help:
+This will show the inline help:
 
 ```bash
 docker run -it --rm mablanco/osmedeus
+```
+
+You can also get all usage examples:
+
+```bash
+docker run -it --rm mablanco/osmedeus osmedeus --usage-example
 ```
 
 This will start a fast analysis of domain `example.com` with logs on the console, deleting the container after finishing:
@@ -20,14 +26,12 @@ This will start a fast analysis of domain `example.com` with logs on the console
 docker run -it --rm mablanco/osmedeus osmedeus run -f fast -t example.com
 ```
 
-In case you want to persist the results of your analysis, you can create a volume for that purpose:
+In case you want to add persistance to your Osmedeus analysis, create the required volumes and mount them appropiately:
 
 ```bash
+docker volume create osmedeus_base
 docker volume create osmedeus_workspaces
-```
-
-```bash
-docker run -it --rm -v osmedeus_workspaces:/root/.osmedeus/workspaces mablanco/osmedeus osmedeus scan -t example.com
+docker run -it --rm -v osmedeus_base:/root/osmedeus-base -v osmedeus_workspaces:/root/workspaces-osmedeus mablanco/osmedeus osmedeus run -t example.com
 ```
 
 ## Web UI
