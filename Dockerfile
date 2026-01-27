@@ -23,5 +23,5 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/{apt,dpkg,cache,log}
 WORKDIR /root
-EXPOSE 8000
+EXPOSE 8002
 CMD ["osmedeus"]
