@@ -4,7 +4,6 @@ ENV PATH="/root/osmedeus-base/external-binaries:/root/.local/bin:${PATH}"
 ENV LANG="en_US.UTF-8" \
     LANGUAGE="en_US:en" \
     LC_ALL="en_US.UTF-8"
-# RUN sed -i 's/main/main contrib non-free/' /etc/apt/sources.list.d/debian.sources && \
 RUN apt-get update && \
     apt-get -yq install \
         apt-utils \
