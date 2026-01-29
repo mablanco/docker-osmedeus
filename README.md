@@ -6,7 +6,7 @@ Docker image for Osmedeus, a fully automated offensive security tool for reconna
 
 ## How to use this image
 
-The image launches Osmedeus' CLI tool without any arguments, so you have to provide your own to customise Osmedeus execution. Have a look at the inline help and the official documentation for basic and advanced usage examples.
+The image launches Osmedeus without any arguments by default, so you have to craft your own Osmedeus command to customise its execution. Feel free to have a look at the inline help and the official documentation for basic and advanced usage examples.
 
 This will show the inline help:
 
@@ -31,7 +31,7 @@ In case you want to add persistance to your Osmedeus analysis, create the requir
 ```bash
 docker volume create osmedeus_base
 docker volume create osmedeus_workspaces
-docker run -it --rm -v osmedeus_base:/root/osmedeus-base -v osmedeus_workspaces:/root/workspaces-osmedeus mablanco/osmedeus osmedeus run -t example.com
+docker run -it --rm -v osmedeus_base:/home/osmedeus/osmedeus-base -v osmedeus_workspaces:/home/osmedeus/workspaces-osmedeus mablanco/osmedeus osmedeus run -t example.com
 ```
 
 ## Web UI
