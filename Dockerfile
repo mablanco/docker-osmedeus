@@ -1,4 +1,4 @@
-FROM kalilinux/kali-rolling@sha256:343d384008ad4595e1466aa5e6c84f23b77386d229fc3680c28deaf8d1150dbe
+FROM kalilinux/kali-rolling@sha256:30399bd65187e06525008dd13eecc2b3439d26a82b2c6b0ba32dee72bd843117
 ARG DEBIAN_FRONTEND=noninteractive
 ENV LANG="en_US.UTF-8" \
     LANGUAGE="en_US:en" \
