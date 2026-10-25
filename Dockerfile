@@ -19,11 +19,11 @@ RUN apt-get update && \
     apt-get -yqu dist-upgrade && \
     apt-get -y autoremove && \
     apt-get clean && \
-    rm -rf /var/lib/{apt,dpkg,cache,log} && \
+    rm -rf /var/lib/apt/lists/* && \
     useradd -m -s /bin/bash osmedeus
 USER osmedeus
 ENV PATH="/home/osmedeus/osmedeus-base/external-binaries:/home/osmedeus/.local/bin:${PATH}"
-RUN bash -c "$(curl -sSL http://www.osmedeus.org/install.sh)" && \
+RUN bash -c "$(curl -sSL https://www.osmedeus.org/install.sh)" && \
     osmedeus install base --preset && \
     osmedeus health
 WORKDIR /home/osmedeus
