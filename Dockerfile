@@ -1,4 +1,4 @@
-FROM golang:1.27.3-bookworm AS go-tools
+FROM golang:1.27.4-bookworm AS go-tools
 RUN apt-get update && \
     apt-get -yq install --no-install-recommends jq && \
     rm -rf /var/lib/apt/lists/*
@@ -9,7 +9,7 @@ RUN --mount=type=cache,target=/go/pkg/mod \
     mkdir -p /out/bin && \
     mv /out/external-binaries/osmedeus /out/external-binaries/assetfinder /out/bin/
 
-FROM kalilinux/kali-rolling@sha256:4be87f78671419c13dcf4f207ead1cfc0de178ea281b3f69c0f49b69ba4e79b1
+FROM kalilinux/kali-rolling@sha256:1ff4a2be3849333687b3ed2b31bb5af0cd1b7c0a11ec7713feb5abe5a6b2795c
 ARG DEBIAN_FRONTEND=noninteractive
 ENV LANG="en_US.UTF-8" \
     LANGUAGE="en_US:en" \
